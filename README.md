@@ -1,3 +1,4 @@
-# php_nginx_laravel (Ambiente Linux WSL2)
+# Treinamento docker-compose (Curso Full Cycle)
 
-- Treinamento docker-compose (Curso Full Cycle)
+- dockerfile
+- docker-compose
