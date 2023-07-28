@@ -6,3 +6,4 @@
 - Laravel (Framework PHP)
 - dockerfile
 - docker-compose
+- Node
