@@ -1,6 +1,22 @@
 version: '3.8'
 
 services:
+  node-service:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    image: maxkikuchi/node:latest
+    command: node index.js
+    container_name: appNode
+    volumes:
+      - ./node:/usr/src/app
+    restart: always
+    tty: true
+    ports:
+      - "8080:3000"
+    networks:
+      - nodenet
+
   mysql-service:
     image: mysql:5.7
     command: --innodb-use-native-aio=0
