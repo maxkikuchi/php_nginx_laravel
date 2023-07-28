@@ -4,8 +4,8 @@ services:
   node-service:
     build:
       context: ./node
-      dockerfile: Dockerfile
-    image: maxkikuchi/node:latest
+      dockerfile: Dockerfile.prod
+    image: maxkikuchi/node:prod
     command: node index.js
     container_name: appNode
     volumes:
