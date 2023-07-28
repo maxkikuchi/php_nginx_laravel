@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  laravel-service:
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile.prod
+    image: maxkikuchi/laravel:prod
+    container_name: laravelmax
+    networks:
+      - laranet
+
+  nginx-service:  
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod                
+    image: maxkikuchi/nginx:prod
+    container_name: nginx
+    networks:
+      - laranet
+    ports:
+      - "8085:80"
+
+networks:
+  laranet:
+    driver: bridge       

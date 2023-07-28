@@ -1,27 +1,20 @@
-version: '3'
+version: '3.8'
 
 services:
-
-        laravel-service:
-                build:
-                   context: ./laravel
-                   dockerfile: Dockerfile.prod
-                image: maxkikuchi/laravel:prod
-                container_name: laravelmax
-                networks:
-                        - laranet
-        
-        nginx:  
-                build:
-                   context: ./nginx
-                   dockerfile: Dockerfile.prod                
-                image: maxkikuchi/nginx:prod
-                container_name: nginx
-                networks:
-                        - laranet
-                ports:
-                        - "8085:80"
+  mysql-service:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: mysql
+    restart: always
+    tty: true  
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - nodenet
 
 networks:
-        laranet:
-                driver: bridge       
+  nodenet:
+    driver: bridge       
