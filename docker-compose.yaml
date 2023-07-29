@@ -4,8 +4,9 @@ services:
   node-service:
     build:
       context: ./node
-      dockerfile: Dockerfile.prod
-    image: maxkikuchi/node:prod
+      dockerfile: Dockerfile
+    image: maxkikuchi/node:latest
+    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s docker-entrypoint.sh
     command: node index.js
     container_name: appNode
     volumes:
@@ -16,6 +17,8 @@ services:
       - "8080:3000"
     networks:
       - nodenet
+    depends_on:
+      - mysql-service
 
   mysql-service:
     image: mysql:5.7
